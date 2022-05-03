@@ -1,6 +1,6 @@
 {
   "name": "solo-project",
-  "version": "1.0.0",
+  "version": "6.6.6",
   "description": "art review app",
   "main": "index.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "css-loader": "^6.7.1",
     "express": "^4.18.1",
     "html-webpack-plugin": "^5.5.0",
+    "mongoose": "^6.3.2",
     "nodemon": "^2.0.16",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "babel-jest": "^28.0.3",
-    "jest": "^28.0.3"
+    "jest": "^28.0.3",
+    "webpack-dev-server": "^4.8.1"
   }
 }
