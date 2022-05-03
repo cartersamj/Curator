@@ -3,22 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: path.resolve('./client/index.js'),
+  entry: path.resolve('./client/provider.jsx'),
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, './build'),
     filename: 'build.js',
   },
-  plugins : [new HtmlWebpackPlugin()],
-  devServer : {
+  plugins: [new HtmlWebpackPlugin()],
+  devServer: {
     static: {
-      directory: 'index.html'
+      directory: 'index.html',
     },
     port: 8080,
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx|\.js/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
@@ -26,10 +26,10 @@ module.exports = {
         },
       },
       {
-        test:/\.s[ac]ss$/i,
+        test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
-        use : [ 'style-loader','css-loader','sass-loader' ]
-      }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
 };
