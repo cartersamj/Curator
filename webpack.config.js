@@ -8,12 +8,22 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     filename: 'build.js',
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'dev server app',
+      template: 'index.html',
+    }),
+  ],
   devServer: {
     static: {
       directory: 'index.html',
     },
     port: 8080,
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:3000',
+      },
+    },
   },
   module: {
     rules: [
@@ -26,7 +36,7 @@ module.exports = {
         },
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css|\.scss|\.sass/gi,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },

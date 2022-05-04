@@ -1,6 +1,4 @@
-import React from 'react'
-import FeedItem from './FeedItem.jsx'
-const data = [
+export default data = [
   {
     objectID: 436040,
     isHighlight: false,
@@ -288,36 +286,3 @@ const data = [
     GalleryNumber: '815',
   },
 ];
-
-
-
-function Feed() {
-  // const arr = ['personally, I', 'am', 'scared']
-//   const arr = [
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP145935.jpg',
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP-19037-001.jpg',
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP252576.jpg',
-//   ]
-
-  // const feedItems = arr.map((ele, i)=>{
-  //   return <FeedItem content={ele} key={'item ' + i}/>
-
-  // })
-  // const feedItems = arr.map((ele, i)=>{
-  //   return <FeedItem src={ele} key={'item ' + i}/>
-
-  // })
-  const feedItems = data.map((ele, i)=>{
-    return <FeedItem src={ele.primaryImage} title={ele.title} key={'item ' + i}/>
-
-  })
-  console.log(feedItems)
-  return (
-  <div className="feed">
-    <h1>I am the feed</h1>
-    {feedItems}
-  </div>
-  )
-}
-
-export default Feed;
