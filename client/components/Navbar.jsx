@@ -3,7 +3,7 @@ import React from 'react'
 function Navbar() {
   return (
   <nav className="navbar">
-    <title className="app-title">Curator // Creator</title>
+    <title className="app-title">Curator // Kurator</title>
       <ul class="nav-menu">
         <li class="nav-item">
             <a href='#' class="nav-link">ABOUT</a>

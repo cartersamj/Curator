@@ -39,13 +39,50 @@ body {
     }
 
     .tombstone {
+      font-family: $ff-roboto;
       position: absolute;
-      top: 50%;
-      bottom: 50%;
-      transform: translate(-50%,-50%);
-      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      left: 10%;
+      color: darken(white, 3);
       opacity: 0;
       transition: opacity ease-out 250ms;
+
+      p {
+        line-height:.5em;
+      
+      }
+      .tombstone-artist {
+        font-size: 1.3em;
+        .artist-name {
+          font-weight: 900;
+        }
+        .artist-born {
+          font-weight: 500;
+        }
+      }
+      .tombstone-painting {
+        font-size: 1.25em;
+        .piece-title {
+          font-weight: 700;
+          font-style: italic;
+        }
+        .piece-date {
+          font-weight: 400;
+          font-style: normal;
+        }
+      }
+      .tombstone-medium {
+        font-weight: 400;
+        color:lightgrey
+      }
+      .tombstone-summary {
+        font-size: .8em;
+        line-height: 1.5em;
+        font-weight: 300;
+        color:lightgrey
+      }
     }
 
     &:hover .tombstone {

@@ -23,8 +23,7 @@ https://images.metmuseum.org/CRDImages/ep/original/DP-19037-001.jpg
 https://images.metmuseum.org/CRDImages/ep/original/DP252576.jpg
 
 TODO:
-1. display entire tombstone appropriately
-2. get tombstone to consistently appear in middle or at least look good
+
 3. get api call workings
 4. set star and fav feature
 5. comment feature

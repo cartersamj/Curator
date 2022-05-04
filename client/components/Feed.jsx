@@ -308,7 +308,16 @@ function Feed() {
 
   // })
   const feedItems = data.map((ele, i)=>{
-    return <FeedItem src={ele.primaryImage} title={ele.title} key={'item ' + i}/>
+    return <FeedItem 
+    src={ele.primaryImage}
+    artist={ele.artistDisplayName}
+    artistBeginDate={ele.artistBeginDate}
+    title={ele.title}
+    objectDate={ele.objectDate}
+    medium={ele.medium}
+    creditLine={ele.creditLine}
+    key={'item ' + i}
+    />
 
   })
   console.log(feedItems)

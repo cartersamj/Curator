@@ -9,10 +9,10 @@ function FeedItem(props) {
     <div className="frame">
       <img src={props.src} className="painting"/>
       <div className="tombstone">
-        <p className="tombstone-artist">Bob Ross</p> 
-        <p className="tombstone-painting">{props.title}</p> 
-        <p className="tombstone-medium">Acrylic on canvas</p> 
-        <p className="tombstone-summary">Bob ross painted this for fun</p> 
+        <p className="tombstone-artist"><span className='artist-name'>{props.artist}</span> <span className='artist-born'>(b. {props.artistBeginDate})</span></p> 
+        <p className="tombstone-painting"><span className='piece-title'>{props.title}</span>, <span className='piece-date'>{props.objectDate}</span></p> 
+        <p className="tombstone-medium">{props.medium}</p> 
+        <p className="tombstone-summary">{props.creditLine}</p> 
       </div>
     </div>
     <div className="engagement">
