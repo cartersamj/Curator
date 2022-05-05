@@ -37,24 +37,30 @@
 // export default FeedItem
 
 /** TESTING BRANCH OF FEED ITEM */
-import React from 'react'
+import React, { useState } from 'react'
 import metApi from '../services/collection.js'
 import favicon from '../../assets/images/heart-gold.svg'
 import staricon from '../../assets/images/star-outline-svgrepo-com.svg'
 
-const handleClick = (input) => {
-  fetch('/art/fav', {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify(input)})
+const handleClick = (art, fav, e) => {
+  fav === 5 ? fav = true: fav = false
+  art.favorite = fav;
+  fetch('/art/fav', {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify(art)})
   .then(data => data.json())
   .then(response => console.log(response))
 }
 
-const handleRating = (input, e) => {
-  console.log(input)
-  console.log(e)
-  e.preventDefault();
+const handleRating = (art,rate, e) => {
+  e.preventDefault()
+  art.userRating = rate;
+  fetch('/art/rate', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(art)})
+  .then(data => data.json())
+  .then(response => console.log(response))
 }
 
 function FeedItem(props) {
+  let [userRating, setUserRating] = useState(0)
+  let [userFav, setUserFav] = useState(0)
   const artData = {
     title: props.objectId.title, 
     primaryImage: props.objectId.primaryImage, 
@@ -62,9 +68,8 @@ function FeedItem(props) {
     artistBeginDate: props.objectId.artistBeginDate,
     objectDate: props.objectId.objectDate,
     medium: props.objectId.medium,
-    creditLine: props.objectId.creditLine
+    creditLine: props.objectId.creditLine,
   }
-  
   return (
     <div className="feed-item">
       <h4 className="art-name">{props.objectId.title}</h4>
@@ -79,18 +84,41 @@ function FeedItem(props) {
       </div>
       <div className="below-painting">
         <div className="engagement">
-          <div className="rating sub-engagement"><div className="stars" style={{"--rating": 0}}></div></div>
+          <div className="rating sub-engagement"><div className="stars" style={{"--rating": userRating}}></div></div>
           <div className="userRating sub-engagement">
             <button className='dropbtn'>Add Your Rating</button>
               <div className="dropdown-content">
-                <a href="#" onClick={(e)=>handleRating(1,e)}>1 Star</a>
-                <a href="#" onClick={(e)=>handleRating(2,e)}>2 Star</a>
-                <a href="#" onClick={(e)=>handleRating(3,e)}>3 Star</a>
-                <a href="#" onClick={(e)=>handleRating(4,e)}>4 Star</a>
-                <a href="#" onClick={(e)=>handleRating(5,e)}>5 Star</a>
+                <a href="#" onClick={(e)=> {
+                  setUserRating(userRating = 1);
+                  handleRating(artData,userRating, e);
+                  }}>★: Yawn-a Lisa</a>
+                <a href="#" onClick={(e)=> {
+                  setUserRating(userRating = 2);
+                  handleRating(artData,userRating, e);
+                  }}>★★: Lame-onardo</a>
+                <a href="#" onClick={(e)=> {
+                  setUserRating(userRating = 3);
+                  handleRating(artData,userRating, e);
+                  }}>★★★: Mid-a Lisa</a>
+                <a href="#" onClick={(e)=> {
+                  setUserRating(userRating = 4);
+                  handleRating(artData,userRating, e);
+                  }}>★★★★: Mona Lisa?</a>
+                <a href="#" onClick={(e)=> {
+                  setUserRating(userRating = 5);
+                  handleRating(artData,userRating, e);
+                  }}>★★★★★: M. Lisa 2.0</a>
               </div>  
             </div>
-          <div className="fav sub-engagement"><button className="fav-icon-button" onClick={()=>handleClick(artData)}><img src={favicon} className="fav-icon" /></button></div>
+          <div className="fav sub-engagement">
+            <button className="fav-icon-button" onClick={(e)=>{
+              setUserFav(userFav = 5);
+              handleClick(artData, userFav, e);
+            }}>
+              {/* <img src={favicon} className="fav-icon" /> */}
+              <div className="heart" style={{"--fav": userFav}}></div>
+              </button>
+          </div>
         </div>
         <div className="comments">
           <input type="text" className="comment-field"/>

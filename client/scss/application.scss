@@ -19,7 +19,7 @@ body {
   background: linear-gradient(320deg, $primary 5%, $secondary 5% 10%, $dark 10% 15%, lighten($neutral, 5) 15% 100% );
   border: 3px solid black;
   border-radius: 10px;
-  margin: 15px 0px;
+  margin: 40px 0px;
   padding-bottom: 1em;
   font-family: $ff-grotesk;
   filter: drop-shadow(0 .25em 0.25rem $secondary);
@@ -104,7 +104,8 @@ body {
 
 .art-name {
   font-family: $ff-poppins;
-  font-weight: 400;
+  font-weight: 500;
+  font-style: italic;
   margin-top: .25em;
   display: inline-block;
   color: $secondary-black;
@@ -214,7 +215,7 @@ body {
   position: fixed;
   width: 100%;
   border-bottom: 1px solid $primary-black;
-  padding: 1rem 1.5rem;
+  padding: .25rem 1.5rem;
   z-index: 1;
 
   li {
@@ -262,6 +263,7 @@ body {
 :root {
   --star-size: 40px;
   --star-color: #fff;
+  --heart-size: 40px
 }
 
 .stars {
@@ -275,15 +277,33 @@ body {
   &::before {
     content: '★★★★★';
     letter-spacing: 3px;
-    background: linear-gradient(90deg, $secondary var(--percent), var(--star-color) var(--percent));
+    background: linear-gradient(90deg, $secondary var(--percent), $neutral var(--percent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
-
+.heart {
+  --percent: calc(var(--fav) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--heart-size);
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+  
+  &::before {
+    content: '♥';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, $secondary var(--percent), $neutral var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
 .dropbtn {
-  border:none;
-  background-color: #04AA6D;
+  padding: 1.75em 1em;
+  border-style: none;
+  border-right: 3px solid $secondary;
+  border-left: 3px solid $secondary;
+  background-color: $dark;
+  color: $neutral;
 }
 .userRating {
   position: relative;
@@ -295,7 +315,10 @@ body {
 
     }
     .dropbtn{
-      background-color:  #3e8e41;
+      background-color:  $secondary;
+      color: $primary-black;
+      border-right: 3px solid $dark;
+      border-left: 3px solid $dark;
     }
   }
 }
@@ -306,15 +329,18 @@ body {
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 3;
 
   a {
-    color: black;
+    color: $dark;
     text-decoration: none;
     display: block;
+    z-index: 3;
+    padding-left: .2em;
 
     &:hover {
       background-color: #ddd;
+      z-index: 3;
     }
   }
 
