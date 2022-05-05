@@ -22,6 +22,10 @@ app.post('/art/rate', ArtController.rateArt, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
+app.get('/art/saved', ArtController.getArt, (req, res) => {
+  return res.status(200).json(res.locals);
+})
+
 app.get('/api/', (req, res) => {
   return res.status(200).send('you did it great job');
 });

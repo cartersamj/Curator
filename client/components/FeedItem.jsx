@@ -46,8 +46,8 @@ const handleClick = (art, fav, e) => {
   fav === 5 ? fav = true: fav = false
   art.favorite = fav;
   fetch('/art/fav', {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify(art)})
-  .then(data => data.json())
-  .then(response => console.log(response))
+    .then(data => data.json())
+    .then(response => console.log(response))
 }
 
 const handleRating = (art,rate, e) => {
@@ -61,71 +61,81 @@ const handleRating = (art,rate, e) => {
 function FeedItem(props) {
   let [userRating, setUserRating] = useState(0)
   let [userFav, setUserFav] = useState(0)
-  const artData = {
-    title: props.objectId.title, 
-    primaryImage: props.objectId.primaryImage, 
-    artistDisplayName: props.objectId.artistDisplayName, 
-    artistBeginDate: props.objectId.artistBeginDate,
-    objectDate: props.objectId.objectDate,
-    medium: props.objectId.medium,
-    creditLine: props.objectId.creditLine,
-  }
+
+  const apiData = metApi.endpoints.getObject.useQuery(props.objectId)
+
   return (
-    <div className="feed-item">
-      <h4 className="art-name">{props.objectId.title}</h4>
-      <div className="frame">
-        <img src={props.objectId.primaryImage} className="painting"/>
-        <div className="tombstone">
-          <p className="tombstone-artist"><span className='artist-name'>{props.objectId.artistDisplayName}</span> <span className='artist-born'>(b. {props.objectId.artistBeginDate})</span></p> 
-          <p className="tombstone-painting"><span className='piece-title'>{props.objectId.title}</span>, <span className='piece-date'>{props.objectId.objectDate}</span></p> 
-          <p className="tombstone-medium">{props.objectId.medium}</p> 
-          <p className="tombstone-summary">{props.objectId.creditLine}</p> 
-        </div>
-      </div>
-      <div className="below-painting">
-        <div className="engagement">
-          <div className="rating sub-engagement"><div className="stars" style={{"--rating": userRating}}></div></div>
-          <div className="userRating sub-engagement">
-            <button className='dropbtn'>Add Your Rating</button>
-              <div className="dropdown-content">
-                <a href="#" onClick={(e)=> {
-                  setUserRating(userRating = 1);
-                  handleRating(artData,userRating, e);
-                  }}>★: Yawn-a Lisa</a>
-                <a href="#" onClick={(e)=> {
-                  setUserRating(userRating = 2);
-                  handleRating(artData,userRating, e);
-                  }}>★★: Lame-onardo</a>
-                <a href="#" onClick={(e)=> {
-                  setUserRating(userRating = 3);
-                  handleRating(artData,userRating, e);
-                  }}>★★★: Mid-a Lisa</a>
-                <a href="#" onClick={(e)=> {
-                  setUserRating(userRating = 4);
-                  handleRating(artData,userRating, e);
-                  }}>★★★★: Mona Lisa?</a>
-                <a href="#" onClick={(e)=> {
-                  setUserRating(userRating = 5);
-                  handleRating(artData,userRating, e);
-                  }}>★★★★★: M. Lisa 2.0</a>
-              </div>  
-            </div>
-          <div className="fav sub-engagement">
-            <button className="fav-icon-button" onClick={(e)=>{
-              setUserFav(userFav = 5);
-              handleClick(artData, userFav, e);
-            }}>
-              {/* <img src={favicon} className="fav-icon" /> */}
-              <div className="heart" style={{"--fav": userFav}}></div>
-              </button>
+    <>
+    {apiData.error ? (
+      <></>
+      ) : apiData.isLoading ? (
+        <>Loading...</>
+        ) : !apiData.data.primaryImage ? (
+          <></>
+    ) : apiData.data ? (
+      <div className="feed-item">
+        <h4 className="art-name">{apiData.data.title}</h4>
+        <div className="frame">
+          <img src={apiData.data.primaryImage} className="painting"/>
+          <div className="tombstone">
+            <p className="tombstone-artist">
+              <span className='artist-name'>
+                {apiData.data.artistDisplayName}
+                </span> 
+                <span className='artist-born'>
+                  (b. {apiData.data.artistBeginDate})
+                </span>
+              </p> 
+            <p className="tombstone-painting"><span className='piece-title'>{apiData.data.title}</span>, <span className='piece-date'>{apiData.data.objectDate}</span></p> 
+            <p className="tombstone-medium">{apiData.data.medium}</p> 
+            <p className="tombstone-summary">{apiData.data.creditLine}</p> 
           </div>
         </div>
-        <div className="comments">
-          <input type="text" className="comment-field"/>
-          <button className='submit-comment'>Submit</button>
+        <div className="below-painting">
+          <div className="engagement">
+            <div className="rating sub-engagement"><div className="stars" style={{"--rating": userRating}}></div></div>
+            <div className="userRating sub-engagement">
+              <button className='dropbtn'>Add Your Rating</button>
+                <div className="dropdown-content">
+                  <a href="#" onClick={(e)=> {
+                    setUserRating(userRating = 1);
+                    handleRating(apiData.data,userRating, e);
+                    }}>★: Yawn-a Lisa</a>
+                  <a href="#" onClick={(e)=> {
+                    setUserRating(userRating = 2);
+                    handleRating(apiData.data,userRating, e);
+                    }}>★★: Lame-onardo</a>
+                  <a href="#" onClick={(e)=> {
+                    setUserRating(userRating = 3);
+                    handleRating(apiData.data,userRating, e);
+                    }}>★★★: Mid-a Lisa</a>
+                  <a href="#" onClick={(e)=> {
+                    setUserRating(userRating = 4);
+                    handleRating(apiData.data,userRating, e);
+                    }}>★★★★: Mona Lisa?</a>
+                  <a href="#" onClick={(e)=> {
+                    setUserRating(userRating = 5);
+                    handleRating(apiData.data,userRating, e);
+                    }}>★★★★★: M. Lisa 2.0</a>
+                </div>  
+              </div>
+            <div className="fav sub-engagement">
+              <button className="fav-icon-button" onClick={(e)=>{
+                setUserFav(userFav = 5);
+                handleClick(apiData.data, userFav, e);
+              }}>
+                <div className="heart" style={{"--fav": userFav}}></div>
+                </button>
+            </div>
+          </div>
+          <div className="comments">
+            <input type="text" className="comment-field"/>
+            <button className='submit-comment'>Submit</button>
+          </div>
         </div>
-      </div>
-    </div> 
+      </div> 
+    ) : null}
+    </>
   )
 }
 // h4 title of art

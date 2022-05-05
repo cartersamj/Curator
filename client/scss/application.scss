@@ -28,6 +28,10 @@ body {
     filter: drop-shadow(0 .25em 0.25rem $primary-black);
   }
 
+  .tombstone:hover .painting:hover {
+    opacity: 0.4;
+  }
+
   .frame {
     position: relative;
     background: $clr-gray;
@@ -58,9 +62,9 @@ body {
       opacity: 0;
       transition: opacity ease-out 250ms;
       flex-wrap: none;
+      user-select: none;
       p {
         line-height:.5em;
-      
       }
       .tombstone-artist {
         font-size: 1.3em;

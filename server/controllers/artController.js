@@ -83,6 +83,20 @@ const ArtController = {
       });
     }
   },
+  async getArt(req, res, next) {
+    try {
+      const gallery = await Art.find({})
+      res.locals.gallery = gallery;
+      return next();
+    }
+    catch (err) {
+      return next({
+        log: 'error in ArtController.getArt',
+        status: 418,
+        message: { err: err },
+      })
+    }
+  }
 };
 
 module.exports = ArtController;
