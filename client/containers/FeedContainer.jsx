@@ -27,7 +27,6 @@ function FeedContainer(props) {
       <>Loading...</>
     ) : (
     <>
-      <h1>I am the feed container</h1>
       <Feed gallery={gallery}/>
     </>
     )}

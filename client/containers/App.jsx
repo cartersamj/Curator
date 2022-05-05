@@ -16,7 +16,6 @@ function App() {
         <>Loading...</>
       ) : data ? (
         <>
-          <h1>hiiiii</h1>
           <FeedContainer collection={data}/>
         </>
       ) : null}

@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "babel-jest": "^28.0.3",
+    "file-loader": "^6.2.0",
     "jest": "^28.0.3",
     "webpack-dev-server": "^4.8.1"
   }

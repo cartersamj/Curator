@@ -6,6 +6,7 @@
 // font-family: 'Space Grotesk', sans-serif;
 body {
   background: $neutral;
+  // background: linear-gradient(135deg, lighten($neutral, 5) 42%,  $dark 42% 47%, $secondary 47% 52%, $primary 52% 57%, lighten($neutral, 5) 57% 100% );
   font-family: $ff-grotesk;
   margin: 0px;
   padding: 0px;
@@ -14,15 +15,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: lighten($neutral, 5);
-  border: 1px solid black;
+  // background: lighten($neutral, 5);
+  background: linear-gradient(320deg, $primary 5%, $secondary 5% 10%, $dark 10% 15%, lighten($neutral, 5) 15% 100% );
+  border: 3px solid black;
   border-radius: 10px;
   margin: 15px 0px;
+  padding-bottom: 1em;
   font-family: $ff-grotesk;
-  filter: drop-shadow(0 .25em 0.25rem $secondary-black);
+  filter: drop-shadow(0 .25em 0.25rem $secondary);
+
+  .below-painting {
+    filter: drop-shadow(0 .25em 0.25rem $primary-black);
+  }
+
   .frame {
     position: relative;
     background: $clr-gray;
+    filter: drop-shadow(0 .25em 0.25rem $primary-black);
     max-width: 30vw;
     display: flex;
     flex-direction: column;
@@ -127,20 +136,62 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background: $primary;
 
   .rating,
   .fav{
     padding: .5em 1em;
   }
+  .fav-icon-button {
+    border-style: none;
+    background: $primary;
+    &:active{
+      background: darken($primary, 10);
+    }
+  }
+  
+  .fav-icon {
+    max-width: 25px;
+    &:active{
+      color: white;
+    }
+  }
+
 }
 
 .comments {
+  display:flex;
+  justify-content: space-between;
+  background-color: white;
   width: 30vw;
   border: 1px solid black;
+  .comment-field {
+    background-color: white;
+    border-style: none;
+    height: 5vh;
+    width: 100%
+
+  }
+
+  .submit-comment {
+    border: none;
+    border-radius: 0px;
+    color: lighten($neutral, 5);
+    background-color: $primary;
+
+    &:hover {
+      color: $primary-black;
+      background-color: $secondary;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: darken($secondary, 10)
+    }
+  }
+  
 }
 .feed {
-  border: 1px solid black;
-  
   min-width: 40vw;
 }
 
@@ -148,7 +199,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid blue;
+  padding-top: 15vh;
 }
 
 .navbar {
@@ -157,10 +208,11 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: lighten($neutral, 10);
-
-  margin: 0px;
+  position: fixed;
+  width: 100%;
   border-bottom: 1px solid $primary-black;
   padding: 1rem 1.5rem;
+  z-index: 1;
 
   li {
     list-style: none;
@@ -168,6 +220,9 @@ body {
 
   a {
     text-decoration: none;
+  }
+  .user {
+    padding-right: 3em;
   }
 }
 
@@ -190,22 +245,6 @@ body {
   }
 }
 
-
-
-.hamburger {
-  display: none;
-}
-
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  background-color: $primary-black;
-}
-
 .app-title {
   font-family: $ff-poppins;
   font-weight: 200;
@@ -214,3 +253,29 @@ body {
   color: $primary-black;
   
 }
+
+
+
+:root {
+  --star-size: 40px;
+  --star-color: #fff;
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+  
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, $secondary var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Just to make a preview more beautifull
