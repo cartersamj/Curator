@@ -148,6 +148,9 @@ body {
     &:active{
       background: darken($primary, 10);
     }
+    &:hover{
+      cursor: pointer;
+    }
   }
   
   .fav-icon {
@@ -278,4 +281,41 @@ body {
   }
 }
 
-// Just to make a preview more beautifull
+.dropbtn {
+  border:none;
+  background-color: #04AA6D;
+}
+.userRating {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .dropdown-content {
+      display: block;
+
+    }
+    .dropbtn{
+      background-color:  #3e8e41;
+    }
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+  a {
+    color: black;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+}

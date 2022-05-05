@@ -48,6 +48,12 @@ const handleClick = (input) => {
   .then(response => console.log(response))
 }
 
+const handleRating = (input, e) => {
+  console.log(input)
+  console.log(e)
+  e.preventDefault();
+}
+
 function FeedItem(props) {
   const artData = {
     title: props.objectId.title, 
@@ -73,7 +79,17 @@ function FeedItem(props) {
       </div>
       <div className="below-painting">
         <div className="engagement">
-          <div className="rating sub-engagement"><div className="stars" style={{"--rating": 2.3}}></div></div>
+          <div className="rating sub-engagement"><div className="stars" style={{"--rating": 0}}></div></div>
+          <div className="userRating sub-engagement">
+            <button className='dropbtn'>Add Your Rating</button>
+              <div className="dropdown-content">
+                <a href="#" onClick={(e)=>handleRating(1,e)}>1 Star</a>
+                <a href="#" onClick={(e)=>handleRating(2,e)}>2 Star</a>
+                <a href="#" onClick={(e)=>handleRating(3,e)}>3 Star</a>
+                <a href="#" onClick={(e)=>handleRating(4,e)}>4 Star</a>
+                <a href="#" onClick={(e)=>handleRating(5,e)}>5 Star</a>
+              </div>  
+            </div>
           <div className="fav sub-engagement"><button className="fav-icon-button" onClick={()=>handleClick(artData)}><img src={favicon} className="fav-icon" /></button></div>
         </div>
         <div className="comments">
