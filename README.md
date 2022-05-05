@@ -24,12 +24,15 @@ https://images.metmuseum.org/CRDImages/ep/original/DP252576.jpg
 
 TODO:
 
-3. set star and fav feature
---rating feature set, hook up to front end
-4. user saved/rated page (react router dom, Links)
-5. comment feature
-6. display comment feature
-7. reorganize react structure
-8. user feature
-
-REMEMBER TO SWITCH TO ACTUAL API
+1. Unsave, unfav features.  Both on front end and back end.
+2. user saved/rated page (react router dom, Links)
+--put saved feed on new page
+3. comment feature
+4. display comment feature
+5. reorganize react structure
+-- utlize state properly and in a less ugly
+6. user feature. with login/validation
+7. modify api call
+-- allow for different genres
+-- clean incoming data from api (object don't need to be that big)
+8. caching
