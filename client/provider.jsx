@@ -7,13 +7,7 @@ import App from './containers/App.jsx'
 import Navbar from './components/Navbar.jsx'
 import style from './scss/application.scss'
 
-// console.log(document.getElementById('root'))
-// export default ReactDOM.render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById('root')
-// );
+
 
 const container = document.getElementById('root')
 const root = createRoot(container)

@@ -23,8 +23,13 @@ https://images.metmuseum.org/CRDImages/ep/original/DP-19037-001.jpg
 https://images.metmuseum.org/CRDImages/ep/original/DP252576.jpg
 
 TODO:
-
-3. get api call workings
+2. get api call workings
+-- really hard! Investigate query async calls
+-- maybe have to go query to server to api
+-- still not sure how i'd handle state async
+-- essentially need to come back with gallery ids
+3. hardcode api call, pretend you're doing it for real
 4. set star and fav feature
 5. comment feature
-6. user feature
+6. reorganize react structure
+7. user feature

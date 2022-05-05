@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: lighten($neutral, 10);
+  background: lighten($neutral, 5);
   border: 1px solid black;
   border-radius: 10px;
   margin: 15px 0px;
@@ -45,16 +45,17 @@ body {
       flex-direction: column;
       justify-content: center;
       left: 10%;
-      color: darken(white, 3);
+      color: $primary-black;
       opacity: 0;
       transition: opacity ease-out 250ms;
-
+      flex-wrap: none;
       p {
         line-height:.5em;
       
       }
       .tombstone-artist {
         font-size: 1.3em;
+        line-height: 1em;
         .artist-name {
           font-weight: 900;
         }
@@ -64,6 +65,7 @@ body {
       }
       .tombstone-painting {
         font-size: 1.25em;
+        line-height: 1em;
         .piece-title {
           font-weight: 700;
           font-style: italic;
@@ -75,13 +77,13 @@ body {
       }
       .tombstone-medium {
         font-weight: 400;
-        color:lightgrey
+        color: darken($secondary-black, 20);
       }
       .tombstone-summary {
         font-size: .8em;
         line-height: 1.5em;
         font-weight: 300;
-        color:lightgrey
+        color: darken($secondary-black, 20);
       }
     }
 

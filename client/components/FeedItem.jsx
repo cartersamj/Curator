@@ -1,28 +1,38 @@
 import React from 'react'
-// h4 
+import metApi from '../services/collection.js'
+
 function FeedItem(props) {
   console.log(props)
+  const artData = metApi.endpoints.getObject.useQuery(props.objectId)
+  console.log(artData)
   return (
-  <div className="feed-item">
-    <h4 className="art-name">{props.title}</h4>
-    {/* <h1>{props.content}</h1> */}
-    <div className="frame">
-      <img src={props.src} className="painting"/>
-      <div className="tombstone">
-        <p className="tombstone-artist"><span className='artist-name'>{props.artist}</span> <span className='artist-born'>(b. {props.artistBeginDate})</span></p> 
-        <p className="tombstone-painting"><span className='piece-title'>{props.title}</span>, <span className='piece-date'>{props.objectDate}</span></p> 
-        <p className="tombstone-medium">{props.medium}</p> 
-        <p className="tombstone-summary">{props.creditLine}</p> 
+  <>
+    {artData.error ? (
+      <>An error occurred</>
+    ) : artData.isLoading? (
+      <>Loading...</>
+    ) : artData.data ? (
+    <div className="feed-item">
+      <h4 className="art-name">{artData.data.title}</h4>
+      <div className="frame">
+        <img src={artData.data.primaryImage} className="painting"/>
+        <div className="tombstone">
+          <p className="tombstone-artist"><span className='artist-name'>{artData.data.artistDisplayName}</span> <span className='artist-born'>(b. {artData.data.artistBeginDate})</span></p> 
+          <p className="tombstone-painting"><span className='piece-title'>{artData.data.title}</span>, <span className='piece-date'>{artData.data.objectDate}</span></p> 
+          <p className="tombstone-medium">{artData.data.medium}</p> 
+          <p className="tombstone-summary">{artData.data.creditLine}</p> 
+        </div>
       </div>
-    </div>
-    <div className="engagement">
-      <div className="rating sub-engagement">*****</div>
-      <div className="fav sub-engagement">♡</div>
-    </div>
-    <div className="comments">
-      <h2>comments here!!</h2>
-    </div>
-  </div>
+      <div className="engagement">
+        <div className="rating sub-engagement">*****</div>
+        <div className="fav sub-engagement">♡</div>
+      </div>
+      <div className="comments">
+        <h2>comments here!!</h2>
+      </div>
+    </div> 
+    ) : null}
+  </> 
   )
 }
 // h4 title of art

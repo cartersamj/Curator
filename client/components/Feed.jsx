@@ -1,5 +1,9 @@
 import React from 'react'
 import FeedItem from './FeedItem.jsx'
+// import {useGetObjectQuery} from '../services/collection.js'
+import metApi from '../services/collection.js'
+import store from '../store.js';
+import feedSlice from '../reducers/feedReducer.js'
 const data = [
   {
     objectID: 436040,
@@ -289,42 +293,39 @@ const data = [
   },
 ];
 
+  
 
 
-function Feed() {
-  // const arr = ['personally, I', 'am', 'scared']
-//   const arr = [
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP145935.jpg',
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP-19037-001.jpg',
-// 'https://images.metmuseum.org/CRDImages/ep/original/DP252576.jpg',
-//   ]
 
-  // const feedItems = arr.map((ele, i)=>{
-  //   return <FeedItem content={ele} key={'item ' + i}/>
+function Feed(props) {
+  // const {apiData, error, isLoading} = useGetObjectQuery(436040);
+  // either do the whole thing here, or do individual calls (array is object Ids)
+  // in each component
+  // const apiData =  metApi.endpoints.getObject.useQuery(436040)
+  // console.log(apiData)
+  // console.log(apiData.data)
+  // store.dispatch(feedSlice.actions.fill())
+  // console.log(store.getState())
 
-  // })
-  // const feedItems = arr.map((ele, i)=>{
-  //   return <FeedItem src={ele} key={'item ' + i}/>
-
-  // })
-  const feedItems = data.map((ele, i)=>{
-    return <FeedItem 
-    src={ele.primaryImage}
-    artist={ele.artistDisplayName}
-    artistBeginDate={ele.artistBeginDate}
-    title={ele.title}
-    objectDate={ele.objectDate}
-    medium={ele.medium}
-    creditLine={ele.creditLine}
-    key={'item ' + i}
-    />
-
-  })
-  console.log(feedItems)
+    // <FeedItem 
+    // src={api.data.primaryImage}
+    // artist={api.data.artistDisplayName}
+    // artistBeginDate={api.data.artistBeginDate}
+    // title={api.data.title}
+    // objectDate={api.data.objectDate}
+    // medium={api.data.medium}
+    // creditLine={api.data.creditLine}
+    // key={'item ' + i}
+    // />
+  
+  console.log(props.gallery)
   return (
   <div className="feed">
     <h1>I am the feed</h1>
-    {feedItems}
+    {props.gallery.map((ele, i) => (
+      <FeedItem key={'item ' + i} objectId={ele} />
+    ))
+    }
   </div>
   )
 }

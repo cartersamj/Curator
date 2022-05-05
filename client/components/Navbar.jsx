@@ -4,21 +4,21 @@ function Navbar() {
   return (
   <nav className="navbar">
     <title className="app-title">Curator // Kurator</title>
-      <ul class="nav-menu">
-        <li class="nav-item">
-            <a href='#' class="nav-link">ABOUT</a>
+      <ul className="nav-menu">
+        <li className="nav-item">
+            <a href='#' className="nav-link">ABOUT</a>
         </li>
-        <li class="nav-item">
-            <a href='#' class="nav-link">SHUFFLE</a>
+        <li className="nav-item">
+            <a href='#' className="nav-link">SHUFFLE</a>
         </li>
-        <li class="nav-item">
-            <a href='#' class="nav-link">USER</a>
+        <li className="nav-item">
+            <a href='#' className="nav-link">USER</a>
         </li>
       </ul>
-      <div class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+      <div className="hamburger">
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </div>
   </nav>
   )
