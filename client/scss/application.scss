@@ -258,8 +258,10 @@ body {
   font-weight: 200;
   font-size: 3em;
   display: inline-block;
-  color: $primary-black;
-  
+  color: $dark;
+  &:hover {
+    color: $primary;
+  }
 }
 
 

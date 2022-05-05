@@ -24,12 +24,18 @@ app.post('/art/rate', ArtController.rateArt, (req, res) => {
 
 app.get('/art/saved', ArtController.getArt, (req, res) => {
   return res.status(200).json(res.locals);
-})
+});
 
 app.get('/api/', (req, res) => {
   return res.status(200).send('you did it great job');
 });
 // app.use(express.static(path.join(__dirname)));
+app.get('/shuffle', (req, res) => {
+  res.redirect('/#');
+});
+app.get('/user', (req, res) => {
+  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+});
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
